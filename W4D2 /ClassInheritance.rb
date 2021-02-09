@@ -17,11 +17,11 @@ end
 
 class Manager < Employee
 
-    attr_acccessor :employees 
+    attr_accessor :employees 
 
     def initialize(name, title, salary, boss)
         super
-        @employees = []
+        @employees = [] 
     end
 
     # def add_employee(employee)
@@ -34,11 +34,27 @@ class Manager < Employee
 
     def employee_salaries
         total = 0
-        
-        employees
-
+       queue = [] 
+        queue += self.employees
+        while !queue.empty?
+            current = queue.shift 
+            total += current.salary 
+            queue << current.employees 
+        end
 
         total
     end
 
 end
+
+ned = Manager.new("ned", "founder", 1000000, nil)
+darren = Manager.new("darren", "taManager", 78000, "ned")
+shawna = Employee.new("shawna", "ta", 12000, "darren")
+david = Employee.new("david", "ta", 10000, darren)
+ned.employees << darren 
+darren.employees << shawna 
+
+
+p ned.bonus(5) # => 500_000
+p darren.bonus(4) # => 88_000
+p david.bonus(3) # => 30_000
