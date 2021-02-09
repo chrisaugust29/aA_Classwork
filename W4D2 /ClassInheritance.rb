@@ -24,9 +24,9 @@ class Manager < Employee
         @employees = [] 
     end
 
-    # def add_employee(employee)
-    #     @employees << employee
-    # end
+    def add_employee(employee)
+        @employees << employee
+    end
 
     def bonus(multiplier)
         (self.employee_salaries) * multiplier
@@ -34,12 +34,12 @@ class Manager < Employee
 
     def employee_salaries
         total = 0
-       queue = [] 
+        queue = [] 
         queue += self.employees
         while !queue.empty?
             current = queue.shift 
             total += current.salary 
-            queue << current.employees 
+            queue += current.employees if current.is_a?(Manager)
         end
 
         total
@@ -51,8 +51,9 @@ ned = Manager.new("ned", "founder", 1000000, nil)
 darren = Manager.new("darren", "taManager", 78000, "ned")
 shawna = Employee.new("shawna", "ta", 12000, "darren")
 david = Employee.new("david", "ta", 10000, darren)
-ned.employees << darren 
-darren.employees << shawna 
+ned.add_employees(darren)
+darren.add_employees(shawna)
+darren.add_employees(david)
 
 
 p ned.bonus(5) # => 500_000
