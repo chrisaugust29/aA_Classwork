@@ -65,6 +65,34 @@ class KnightPathFinder
             end
         end
     end
+    
+    def find_path(end_pos)
+        debugger
+        path = root_node.dfs(end_pos)
+        trace_path_back(path)
+    end
+
+    def trace_path_back(end_node)
+         queues = []
+         node = end_node
+         
+        until node.value == root_node.value             
+            queues << node
+            node = node.parent 
+
+        end
+       return queues
+    end
+
+
+
+
+
+
 
 
 end 
+
+kpf = KnightPathFinder.new([0, 0])
+kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
