@@ -1,4 +1,5 @@
 require_relative './00_tree_node.rb'
+require 'byebug'
 class KnightPathFinder
     attr_accessor :root_node
 
@@ -23,10 +24,11 @@ class KnightPathFinder
         valid_pos = []
         x, y = position   #as long 0 >x < 7 
 
-        MOVES.each do |sub|
-            sub_x, sub_y = sub
+        MOVES.each do |sub_arr|
+            sub_x, sub_y = sub_arr
             added_pos = [sub_x + x, sub_y + y]
-            if (added_pos[0] > 0 && added_pos[0] < 7) && (added_pos[1]>0 && added_pos[1]<7 ) 
+            
+            if (added_pos[0] > 0 && added_pos[0] < 7) && (added_pos[1] > 0 && added_pos[1] < 7 ) 
                 valid_pos << added_pos
             end
         end
@@ -36,10 +38,33 @@ class KnightPathFinder
     def initialize(start_position) 
         @position = start_position
         @considered_pos = [start_position]
-        @root_node = PolyTreeNode.new(@position) 
+        @root_node = PolyTreeNode.new(start_position) 
         build_move_tree
     end
-    def build_move_tree #all possible moves  
-        self.root_node
+
+    def new_move_positions(pos) 
+        result = []
+        valid_moves = KnightPathFinder.valid_moves(pos)
+        valid_moves.each do |sub_arr|
+            if !@considered_pos.include?(sub_arr)
+                result << sub_arr
+                @considered_pos << sub_arr
+            end
+        end
+        result
     end
+    # the children of root_node will be all of the possible positions
+    def build_move_tree #all possible moves  
+        queue = [self.root_node]
+        until queue.empty?
+            node = queue.shift
+            # PolyTreeNode.new([0,0])
+            new_move_positions(node.value).each do |pos|
+               child = node.add_child(PolyTreeNode.new(pos))
+               queue << child
+            end
+        end
+    end
+
+
 end 
