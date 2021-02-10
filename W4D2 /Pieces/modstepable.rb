@@ -28,7 +28,7 @@ module Stepable
             newpos = [row_x, col_y]
         
             moveable = false unless newpos.all? { |ele| (0..7).include?(ele) } 
-            self.color == ⚫️ ? opposite_color = ⚪️ : opposite_color = ⚫️
+            self.color == :b ? opposite_color = :w : opposite_color = :b
                 if @board[newpos].color == self.color
                     moveable = false
                 elsif @board[newpos].color == opposite_color

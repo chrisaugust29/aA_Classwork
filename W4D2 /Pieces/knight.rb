@@ -6,10 +6,10 @@ class Knight < Piece
     include Stepable
 
     def symbol
-       if self.color == ⚫️
-            ♞
+       if self.color == :b
+            "♞"
         else
-            ♘
+            "♘"
         end
     end
 

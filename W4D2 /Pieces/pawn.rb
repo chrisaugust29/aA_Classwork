@@ -4,20 +4,18 @@ require_relative "./piece"
 class Pawn < Piece
 
     def symbol
-        if self.color == ⚫️
-            ♟
+        if self.color == :b
+            "♟"
         else
-            ♙
+            "♙"
         end
     end
 
     def moves
         result =[]
 
-        self.move_dirs.each do |pos|
-            dx, dy = pos
-          result +=  grow_unblocked_moves_in_dir(pos)
-        end
+        result += self.side_attacks
+        result += forward_steps
         result
        
     end
@@ -25,13 +23,13 @@ class Pawn < Piece
     private
 
     def at_start_row?
-        if self.color == ⚫️
+        if self.color == :b
             return true if self.pos[0] == 6
         else
             return false
         end
 
-        if self.color == ⚪️️
+        if self.color == :w
             return true if self.pos[0] == 1
         else
             return false
@@ -39,8 +37,8 @@ class Pawn < Piece
     end
 
     def forward_dir
-        return -1 if self.color == ⚫️
-        return 1 if self.color == ⚪️️
+        return -1 if self.color == :b
+        return 1 if self.color == :w
     end
 
     def forward_steps
@@ -67,7 +65,7 @@ class Pawn < Piece
         new_row = row + self.forward_dir
         new_col = col + 1
         newpos = [new_row, new_col]
-        self.color == ⚫️ ? opposite_color = ⚪️ : opposite_color = ⚫️
+        self.color == :b ? opposite_color = :w : opposite_color = :b
         tester = @board[newpos].color
         if tester == opposite_color
             options << newpos

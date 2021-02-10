@@ -6,10 +6,10 @@ class Bishop < Piece
     include Slideable
 
     def symbol
-       if self.color == ⚫️
-            ♝
+       if self.color == "b"
+            "♝"
         else
-            ♗
+            "♗"
         end
     end
 

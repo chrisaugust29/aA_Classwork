@@ -6,10 +6,10 @@ class King < Piece
     include Stepable
 
     def symbol
-       if self.color == ⚫️
-            ♛
-        else
-            ♕
+       if self.color == :b
+            "♛"
+        else 
+            "♕"
         end
     end
 

@@ -1,17 +1,4 @@
 
-module Stepable
-
-    def moves
-
-    end 
-
-    private 
-    def move_diffs
-        
-    end
-
-end
-
 class Piece
     attr_reader :color, :board, :pos
     def initialize(color, board, pos)
@@ -23,7 +10,7 @@ class Piece
     end
 
     def to_s
-        self.
+        # self.
     end
 
     def empty?(pos)

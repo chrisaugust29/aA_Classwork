@@ -1,4 +1,4 @@
-require_relative "piece.rb"
+require_relative "./Pieces/piece.rb"
 
 class Board
 
@@ -11,13 +11,15 @@ class Board
         (0..7).each do |row|
             (0..7).each do |col|
                 if row < 2 || row > 5
-                    @rows[row][col] = Piece.new
+                    @rows[row][col] =  fill_pieces(row,col)
                 else
-                    @rows[row][col] = nil
+                    @rows[row][col] = Null.new
                 end
             end
         end
     end
+
+    
 
     def [](pos)
         row, col = pos
@@ -41,8 +43,49 @@ class Board
         pos.all? { |ele| (0..7).include?(ele) }
 
     end 
+    private 
+    def fill_pieces(row, col)
+        if row == 1 
+            Pawn.new(:w, self, [row, col])
+        elsif row == 6 
+            Pawn.new(:b, self, [row,pos] )
+        end
+
+        if row == 0 && (col == 0 || col == 7)
+            Rook.new(:w, self, [row, col])
+        elsif row == 7 && (col == 0 || col == 7)
+            Rook.new(:b, self, [row, col])
+        end
+
+        if row == 0 && (col == 1 || col == 6)
+            Knight.new(:w, self, [row, col])
+        elsif row == 7 && (col == 1 || col == 6)
+            Knight.new(:b, self, [row, col])
+        end
+
+         if row == 0 && (col == 2 || col == 5)
+            Bishop.new(:w, self, [row, col])
+        elsif row == 7 && (col == 2 || col == 5)
+            Bishop.new(:b, self, [row, col])
+        end
+
+        if row == 0 && col == 3 
+            Queen.new(:w, self, [row, col])
+        elsif row == 7 && col == 3
+            Queen.new(:b, self, [row, col])
+        end
+
+        if row == 0 && col == 4 
+           King.new(:w, self, [row, col])
+        elsif row == 7 && col == 4
+            King.new(:b, self, [row, col])
+        end
+
+    end
+
+    
 end
 
 p chess = Board.new
-p chess.move_piece([1,1], [8,1])
+# p chess.move_piece([1,1], [8,1])
 p chess
