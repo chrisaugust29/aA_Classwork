@@ -1,11 +1,12 @@
 require_relative "./piece"
+require "singleton"
 
 class Null < Piece
 
     include Singleton
 
     def initialize
-        @color.symbol
+        
     end
 
     def moves
@@ -19,7 +20,7 @@ class Null < Piece
     end
 
     def symbol
-        @color = ""
+         return "-"
     end
 
 end

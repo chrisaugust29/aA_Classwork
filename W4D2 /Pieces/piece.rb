@@ -1,4 +1,5 @@
 
+ 
 class Piece
     attr_reader :color, :board, :pos
     def initialize(color, board, pos)
@@ -10,11 +11,13 @@ class Piece
     end
 
     def to_s
-        # self.
+        self.symbol 
     end
 
     def empty?(pos)
-        return true if @board[pos] == nil
+        row, col = pos
+        return true if @board[row][col].symbol == "-"
+
         false
     end
 
@@ -24,7 +27,7 @@ class Piece
     # end
 
     def pos=(val)
-        
+        @board[@pos] = val
 
     end 
 
