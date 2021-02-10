@@ -1,46 +1,23 @@
 
-module Slideable
-
-    HORIZONTAL_DIRS = [
-        [0,-1],
-        [0,1],
-        [1,0],
-        [-1,0]
-    ]
-    
-
-    DIAGONAL_DIRS = [
-        [-1,1],
-        [1,1],
-        [-1,-1],
-        [1,-1]
-    ]
-
-
-    def horizontal_dirs
-        HORIZONTAL_DIRS
-    end
-
-    def diagonal_dirs 
-        DIAGONAL_DIRS
-    end
+module Stepable
 
     def moves
         result =[]
 
-        self.move_dirs.each do |pos|
+        self.move_diffs.each do |pos|
             dx, dy = pos
-          result +=  grow_unblocked_moves_in_dir(pos)
+            result += grow_unblocked_moves_in_dir(pos)
         end
         result
     end
 
-    private 
-    def move_dirs
+
+    private
+    def move_diffs
         raise "this method should be overwritten"
     end
 
-    def grow_unblocked_moves_in_dir(dx, dy) 
+    def grow_unblocked_moves_in_dir(dx, dy)
         row_x , col_y = @pos  
         moveable = true 
         result = [] 
@@ -59,8 +36,9 @@ module Slideable
                     moveable = false 
                 end
                 result << newpos if moveable == true
+          
         end
         result
      end
-     
+
 end
