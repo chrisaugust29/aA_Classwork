@@ -30,14 +30,19 @@ class Board
     end
 
     def move_piece(start_pos, end_pos)
-        raise "invalid start" if @rows[start_pos] == nil
+        raise "invalid start" if self[start_pos] == nil
+        raise "invalid move" unless valid_move(start_pos) && valid_move(end_pos)
+        self[end_pos] = self[start_pos]
+        self[start_pos] = nil
 
-        @rows[end_pos] = @rows[start_pos]
-        @rows[start_pos] = nil
     end
 
+    def valid_move(pos)
+        pos.all? { |ele| (0..7).include?(ele) }
+
+    end 
 end
 
 p chess = Board.new
-p chess.move_piece([1,1], [2,1])
-
+p chess.move_piece([1,1], [8,1])
+p chess
