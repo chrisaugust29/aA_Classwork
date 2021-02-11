@@ -41,12 +41,13 @@ class Board
         @rows[row][col] = val 
     end
 
-    def move_piece(start_pos, end_pos, color)
+    def move_piece(start_pos, end_pos)
         raise "invalid start" if self[start_pos].symbol == "-" 
         raise "invalid move" unless valid_move(start_pos) && valid_move(end_pos)
-        raise "wrong color" if self[start_pos].color != color  
+        # raise "wrong color" if self[start_pos].color != color  
         self[end_pos] = self[start_pos]
         self[start_pos] = @null
+        self[end_pos].pos = end_pos
 
     end
 
@@ -103,7 +104,7 @@ class Board
         if row == 0 && col == 4 
          return   King.new(:w, self, [row, col])
         elsif row == 7 && col == 4
-          return   King.new(:b, self, [row, col])
+          return  King.new(:b, self, [row, col])
         end
 
     end
@@ -114,7 +115,7 @@ end
  chess = Board.new
 # p chess.move_piece([1,1], [8,1])
 # p chess.start
-chess.move_piece([1,1] ,[4,4] )
-print chess([4,4])
+chess.move_piece([0,0] ,[4,4] )
+p chess[[4,4]].moves
 
 

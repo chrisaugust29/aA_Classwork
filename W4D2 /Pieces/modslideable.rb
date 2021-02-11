@@ -30,7 +30,7 @@ module Slideable
 
         self.move_dirs.each do |pos|
             dx, dy = pos
-          result +=  grow_unblocked_moves_in_dir(pos)
+          result +=  grow_unblocked_moves_in_dir(dx,dy)
         end
         result
     end

@@ -27,7 +27,7 @@ class Piece
     # end
 
     def pos=(val)
-        @board[@pos] = val
+        @pos = val
 
     end 
 

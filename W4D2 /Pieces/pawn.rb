@@ -20,7 +20,7 @@ class Pawn < Piece
        
     end
 
-    private
+   
 
     def at_start_row?
         if self.color == :b
