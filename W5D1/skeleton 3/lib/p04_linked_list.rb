@@ -1,7 +1,6 @@
 class Node
   attr_reader :key
   attr_accessor :val, :next, :prev
-
   def initialize(key = nil, val = nil)
     @key = key
     @val = val
