@@ -4,5 +4,9 @@ class User < ApplicationRecord
         foreign_key: :student_id, 
         class_name: :Enrollment
 
-        #need to a through for enrolled courses 
+        #need to a through for enrolled courses
+        has_many :enrolled_courses,
+        through: :enrollments,
+        source: :course 
+
 end
