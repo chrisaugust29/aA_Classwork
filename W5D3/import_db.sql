@@ -1,8 +1,14 @@
+DROP TABLE IF EXISTS question_likes;
+DROP TABLE IF EXISTS replies;
+DROP TABLE IF EXISTS question_follows;
+DROP TABLE IF EXISTS questions;
+DROP TABLE IF EXISTS users;
+
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE users(   
-    id INTEGER PRIMARY KEY
-    fname TEXT 
+    id INTEGER PRIMARY KEY,
+    fname TEXT,
     lname TEXT 
 ); 
 
@@ -56,25 +62,27 @@ INSERT INTO
     questions(title, body, author_id)
 VALUES
     ('First Question', 'This is question', 
-    SELECT id
+    (SELECT id
     FROM users 
-    WHERE users.fname = 'ali' AND users.lname = 'ibsen'
+    WHERE users.fname = 'ali' AND users.lname = 'ibsen')
     );
+
 INSERT INTO 
     questions(title, body, author_id)
 VALUES
     ('Second Question', 'This is second question', 
-    SELECT id 
+    (SELECT id 
     FROM users 
-    WHERE users.fname = 'chris' AND users.lname = 'low'
+    WHERE users.fname = 'chris' AND users.lname = 'low')
     );
+
 INSERT INTO 
     questions(title, body, author_id)
 VALUES
     ('Third Question', 'This is third question', 
-    SELECT id 
+    (SELECT id 
     FROM users 
-    WHERE users.fname = 'third' AND users.lname = 'name'
+    WHERE users.fname = 'third' AND users.lname = 'name')
     );
 
 INSERT INTO 
@@ -90,22 +98,24 @@ VALUES
     ));
 
 INSERT INTO 
-    replies(user_id,question_id,parent_id,body)
-VALUES
-    ((SELECT id 
+    replies (author_id, question_id, parent_id, body)
+VALUES (
+
+    (SELECT id 
     FROM users 
-    WHERE users.fname = 'chris' AND users.lname = 'low'
-    ),
+    WHERE users.fname = 'chris' AND users.lname = 'low'),
+
     (SELECT id
     FROM questions
-    WHERE title = 'Second Question'
-    ),
-    (NULL),
+    WHERE title = 'Second Question'),
+
+    NULL,
+
     'this is body of reply'
     ); 
 
 INSERT INTO 
-    replies(user_id,question_id,parent_id,body)
+    replies(author_id,question_id,parent_id,body)
 VALUES
    ((SELECT id 
     FROM users 
@@ -132,5 +142,4 @@ VALUES
     FROM questions
     WHERE title = 'Second Question'
     ));
-    
     
