@@ -1,6 +1,6 @@
 require_relative 'questions_database.rb'
-
-class Question
+require_relative 'model.rb'
+class Question < Model
 
   def self.find_by_id(id)
     data = QuestionsDatabase.instance.execute("SELECT * FROM questions WHERE id = #{id}")
@@ -10,7 +10,7 @@ class Question
   def initialize(options)
     @id = options["id"]
     @title = options["title"]
-    @body = options[" body"]
+    @body = options["body"]
     @author_id = options["author_id"]
   end
 end
