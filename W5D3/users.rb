@@ -12,7 +12,13 @@ class Users < Model
     data = QuestionsDatabase.instance.execute("SELECT * FROM users WHERE id = #{id}")
     Users.new(data[0])
   end
-
+  
+  def self.find_by_name(fname,lname)
+    data = QuestionsDatabase.instance.execute("SELECT * FROM users WHERE fname = #{fname} AND  lname = #{lname}")
+    Users.new(data[0])
+  end
+  
+  
   def initialize(options)
     @id = options["id"]
     @fname = options["fname"]

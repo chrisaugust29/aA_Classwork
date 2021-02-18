@@ -7,7 +7,7 @@ class QuestionLikes < Model
 
   def self.find_by_id(id)
     data = QuestionsDatabase.instance.execute("SELECT * FROM question_likes WHERE id = #{id}")
-    Users.new(data[0])
+    QuestionLikes.new(data[0])
   end
 
   def initialize(options)

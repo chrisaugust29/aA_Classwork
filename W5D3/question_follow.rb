@@ -7,7 +7,7 @@ class QuestionFollow < Model
 
   def self.find_by_id(id)
     data = QuestionsDatabase.instance.execute("SELECT * FROM question_follows WHERE id = #{id}")
-    Users.new(data[0])
+    QuestionFollow.new(data[0])
   end
 
   def initialize(options)
