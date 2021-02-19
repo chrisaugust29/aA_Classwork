@@ -5,8 +5,8 @@ class User < ApplicationRecord
         class_name: :Enrollment
 
         #need to a through for enrolled courses
-        has_many :enrolled_courses,
-        through: :enrollments,
-        source: :course 
+        has_many :enrolled_courses
+        through: :enrollments, #current 
+        source: :course     #gets us to 
 
 end
