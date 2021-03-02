@@ -1,5 +1,37 @@
 <!DOCTYPE html>
 <html>
+<header>
+      <% if signed_in? %>       
+          
+          <div>
+            <p>Logged in as: <%= current_user.username %></p>   
+             <form action=<%= session_url %> method='post'>
+            <input
+              type="hidden"
+              name="_method"
+              value="delete">
+            <input
+              type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">       
+            <input 
+              type="submit" value="Sign Out">
+          </form>
+          </div>
+
+           <% else %> 
+            <div>
+            <p>Login:</p> 
+            <form action=<%= new_session_url %> method='get'>         
+            <input 
+              type="submit" value="Sign In">
+          </form>
+          </div>
+
+      <% end %>
+
+      <% end %> 
+ </header>
   <head>
     <title>NinetyNineCats</title>
     <%= csrf_meta_tags %>

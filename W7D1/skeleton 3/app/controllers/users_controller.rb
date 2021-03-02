@@ -13,5 +13,13 @@ class UsersController < ApplicationController
         end
     end
 
-    
+    private 
+    def  user_params
+        params.require(:user).permit(:password, :username)
+    end
+
+    # password123 + salt(sndfu02839fdun0e)
+    # into the hash BCrypt
+    # 21347890213yrndf8un0312rf8 < --pasword digest
+    # $10$2$   21347890213yrndf8un0312rf8 sndfu02839fdun0e
 end
