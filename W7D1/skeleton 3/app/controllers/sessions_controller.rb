@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
           params[:user][:password]
         )
         sign_in!(@user)
-        redirect_to users_url
+        redirect_to cats_url
       end
     
       def destroy
