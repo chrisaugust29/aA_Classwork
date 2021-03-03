@@ -5,6 +5,18 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  has_many :goals,
+  foreign_key: :user_id,
+  class_name: "Goal"
+
+  has_many :cheers,
+  foreign_key: :user_id,
+  class_name: "Cheer"
+
+  has_many :cheered_goals,
+  through: :cheers,
+  source: :goals
+
   def reset_session_token!
     self.session_token = SecureRandom::urlsafe_base64(16)
     self.save!
