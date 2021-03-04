@@ -3,6 +3,8 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :password, length: { minimum: 7 }
 
+  after_initialize :ensure_session_token
+
   attr_reader :password
 
   has_many :goals,
