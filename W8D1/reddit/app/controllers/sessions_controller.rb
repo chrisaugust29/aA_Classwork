@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   before_action :require_signed_in!
 
   def new
-    render: new
+    render :new
   end
 
   def create
