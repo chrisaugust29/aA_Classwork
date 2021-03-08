@@ -1,5 +1,5 @@
 class SubsController < ApplicationController
-  before_action :require_signed_in! except: [:index, :show]
+  before_action :require_signed_in!, except: [:index, :show]
 
   def new
     @sub = Sub.new

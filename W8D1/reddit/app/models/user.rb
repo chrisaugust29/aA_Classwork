@@ -1,9 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 class User < ApplicationRecord
     validates :username, :password_digest, :session_token, presence: true 
     validates :password, length: { minimum: 4, allow_nil: true }
 
     after_initialize :ensure_session_token
     attr_reader :password 
+
+    has_many :subs,
+    foreign_key: :moderator_id,
+    class_name: "Sub"  
+
+    has_many :posts,
+    foreign_key: :author_id,
+    class_name: "Post"  
 
     #spire
 
