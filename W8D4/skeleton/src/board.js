@@ -9,7 +9,12 @@ if (typeof window === 'undefined'){
  * and two white pieces at [3, 3] and [4, 4]
  */
 function _makeGrid () {
-}
+  let grid = Array.newArray;
+    for(let i = 0; i < 8; i++){
+      grid.shift(Array.newArray(8));
+    }
+  return console.log(grid);
+};
 
 /**
  * Constructs a Board with a starting grid set up.
