@@ -6,6 +6,7 @@ function Piece (color) {
 }
 
 
+
 // initilize (name, )
     // @name = name
 
