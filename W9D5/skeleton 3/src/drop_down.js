@@ -9,21 +9,42 @@ const dogs = {
   "French Bulldog": "https://www.akc.org/dog-breeds/french-bulldog/" 
 };
 
-const dogNav = document.getElementsByClassName('drop-down-dog-nav');
+// const dogNav = document.getElementsByClassName('drop-down-dog-nav');
 
-function dogLinkCreator(dogs) {
-  // const dogLink = Object.values(dogs);
+const dogLinkCreator = (dogs) => {
+
+  const dogLink = [];
   const dogName = Object.keys(dogs);
 
-  const a = document.createElement("a");
+
   dogName.forEach(name => {
+    const a = document.createElement("a");
     a.innerHTML = name;
     a.href = dogs[name];
-  });
+ 
 
-  const dogLink = document.createElement("li");
-  const link = dogLink.className("dog-link");
-  dogNav.append(link);
-  // dogLink.appendChild(a)
+  const li = document.createElement("li");
+   li.classList = "dog-link";
+    li.appendChild(a);
+    dogLink.push(li);
+  })
+    return dogLink;
 }
 
+const attachDogLinks = () => {
+  const ulClass = document.querySelector(".drop-down-dog-list")
+  const dogLinks = dogLinkCreator(dogs);
+  dogLinks.forEach(link => ulClass.appendChild(link));
+
+}
+attachDogLinks();
+
+const handleLeave = () => {
+  const dogLinks = document.querySelectorAll(".dog-link");
+  dogLinks.forEach(el => el.classList.toggle('gone'))
+}
+
+const handleEnter = () => {
+  const dogLinks = document.querySelectorAll(".dog-link");
+  dogLinks.forEach(el => el.classList.toggle('tada'))
+}
