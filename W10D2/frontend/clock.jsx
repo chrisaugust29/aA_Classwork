@@ -22,7 +22,7 @@ constructor(props) {
         return(
             <div>
                 <h1>Clock</h1>
-
+                <div  className = "clock">
                 <p>Time: {this.state.time.getHours()}:
                     {this.state.time.getMinutes()}:
                     {this.state.time.getSeconds()}
@@ -33,6 +33,7 @@ constructor(props) {
                         {this.state.time.getFullYear()}
 
                 </p>
+                </div>
 
             </div>
 

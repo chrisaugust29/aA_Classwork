@@ -1,0 +1,48 @@
+.clock{
+    font-size: 28px;
+    color: white;
+    font-family: 'Orbitron', sans-serif;;
+    width: 550px;
+    height: 94px;
+    border: 2px solid black;
+    margin: 0 20px 20px 20px;
+    padding: 10px;
+    background-color: orange;
+    background-size: cover;
+    background-position-y: 20%;
+
+}
+
+.tab-header{
+    display:flex;
+}
+
+.tab-header > li {
+    list-style-type: none;
+    width: 65px;
+    border-top: 2px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 2px solid black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-top: 4px;
+    text-align: center;
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+.tab-content {
+    font-weight: bold;
+    color: white;
+    height: 192px;
+    margin: 0 20px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    background-size: cover;
+}
